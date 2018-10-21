@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/588095982/projetos/meublog/resources/views/blog/noticia.blade.php</file>
+            <file>file:/C:/Users/588095982/projetos/meublog/resources/views/layout/app.blade.php</file>
+            <file>file:/C:/Users/588095982/projetos/meublog/resources/views/admin/listar-noticias.blade.php</file>
+            <file>file:/C:/Users/588095982/projetos/meublog/resources/views/admin/cadastrar-noticia.blade.php</file>
+            <file>file:/C:/Users/588095982/projetos/meublog/app/Http/Controllers/Admin/AdminController.php</file>
+            <file>file:/C:/Users/588095982/projetos/meublog/resources/views/blog/noticias.blade.php</file>
+            <file>file:/C:/Users/588095982/projetos/meublog/routes/web.php</file>
+            <file>file:/C:/Users/588095982/projetos/meublog/app/Http/Controllers/Blog/BlogController.php</file>
+        </group>
+    </open-files>
+</project-private>
