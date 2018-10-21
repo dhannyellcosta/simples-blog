@@ -19,7 +19,6 @@ class AdminController extends Controller {
         $this->noticia = new Noticia($request->all());
         $this->noticia->save();
 
-        //return redirect()->route('cadastrar.noticia')->with('status', 'Notícia cadastrada com sucesso!');
         return response()->json('Notícia cadastrada com sucesso');
     }
 
