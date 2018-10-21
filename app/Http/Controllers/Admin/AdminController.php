@@ -5,21 +5,37 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\model\Noticia;
 use Illuminate\Http\Request;
+use Validator;
 
 class AdminController extends Controller {
 
     private $noticia;
 
     public function index() {
-        return view('admin.cadastrar-noticia', ['label' => 'Salvar Notícia']);
+        return view('admin.cadastrar-noticia', ['label' => 'Salvar Notícia', 'id' => 'salvar']);
     }
 
     public function salvar(Request $request) {
-        
-        $this->noticia = new Noticia($request->all());
-        $this->noticia->save();
 
-        return response()->json('Notícia cadastrada com sucesso');
+        $rules = [
+            'titulo' => 'required',
+            'conteudo' => 'required',
+            'categoria' => 'required',
+            'autor' => 'required',
+            'palavras_chave' => 'required'
+        ];
+
+        $validador = Validator::make($request->all(), $rules);
+
+        if ($validador->fails()) {
+            return response()->json(['errors' => 'Campos invalidos! Preencha todos os campos!']);
+            //return response()->json(['errors' => $validador->getMessageBag()->toarray()]);
+        } else {
+            $this->noticia = new Noticia($request->all());
+            $this->noticia->save();
+
+            return response()->json('Notícia cadastrada com sucesso!');
+        }
     }
 
     public function listarNoticias() {
@@ -33,19 +49,34 @@ class AdminController extends Controller {
         $this->noticia = Noticia::find($request->id);
         $this->noticia->delete();
 
-        return redirect()->route('listar.noticias')->with('status', 'Noticía deletada com sucesso!');
+        return response()->json('Notícia deletada com sucesso!');
     }
 
     public function showFormAlterar(Request $request) {
         $this->noticia = Noticia::find($request->id);
-        return view('admin.cadastrar-noticia', ['noticia' => $this->noticia, 'label' => 'Alterar Notícia']);
+        return view('admin.cadastrar-noticia', ['noticia' => $this->noticia, 'label' => 'Alterar Notícia', 'id' => 'alterar']);
     }
 
-    public function alterar(Request $request){
+    public function alterar(Request $request) {
+
+        $rules = [
+            'titulo' => 'required',
+            'conteudo' => 'required',
+            'categoria' => 'required',
+            'autor' => 'required',
+            'palavras_chave' => 'required'
+        ];
+
+        $validador = Validator::make($request->all(), $rules);
+        
+        if($validador->fails()){
+            return response()->json(['errors' => 'Campos invalidos! Preencha todos os campos!']);
+        }
         
         $this->noticia = Noticia::find($request->id);
         $this->noticia->update($request->all());
-        
-        return redirect()->route('listar.noticias')->with('status', 'Notícia alterada com sucesso!');
+
+        return response()->json('Notícia alterada com sucesso!');
     }
+
 }

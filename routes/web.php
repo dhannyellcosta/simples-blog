@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Route::get('blog/admin/cadastrar', 'Admin\AdminController@index')->name('cadastrar.noticia');
 Route::get('blog/admin/listar-noticias', 'Admin\AdminController@listarNoticias')->name('listar.noticias');
-Route::post('deletar', 'Admin\AdminController@deletar')->name('deletar.noticia');
+Route::post('blog/admin/deletar', 'Admin\AdminController@deletar')->name('deletar.noticia');
 Route::post('blog/admin/show-form-alterar', 'Admin\AdminController@showFormAlterar')->name('showForm.noticia');
 Route::post('blog/admin/alterar', 'Admin\AdminController@alterar')->name('alterar.noticia');
 Route::get('blog/noticias', 'Blog\BlogController@index')->name('blog.noticias');

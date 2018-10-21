@@ -5,10 +5,10 @@
 @section('content')
 
 @if(isset($noticia))
-{!! Form::model($noticia, ['route' => 'alterar.noticia', 'method' => 'post' ])!!}
+{!! Form::model($noticia)!!}
 <input type="hidden" name="id" value="{{$noticia->id}}"/>
 @else
-{!! Form::open(['route' => 'salvar.noticia', 'method' => 'post' ])!!}
+{!! Form::open()!!}
 @endif
 <div class="form-group">
     <label for="titulo">Titulo</label>
@@ -30,8 +30,7 @@
     <label for="palavras_chave">Palavras-chave</label>
     {!! Form::text('palavras_chave', null, ['class' => 'form-control', 'id' => 'palavras_chave']) !!}
 </div>
-
-<button type="button" id="salvar" class="btn btn-outline-secondary">{{$label}}</button>
+<button type="button" id="{{$id}}" class="btn btn-outline-secondary" name="teste">{{$label}}</button>
 <p class="float-right">
     <a href="{{route('blog.noticias')}}" class="btn btn-outline-secondary">Voltar</a>
     <a href="{{route('listar.noticias')}}" class="btn btn-outline-secondary" style="margin-left: 10px">Lista de Notícias</a>
