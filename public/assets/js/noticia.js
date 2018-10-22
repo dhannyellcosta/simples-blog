@@ -66,9 +66,9 @@ $('#alterar').click(function () {
 });
 
 $('#deletar').on('click', function () {
-    
+
     let id = $('#id').val();
-        
+
     $.ajax({
         type: 'POST',
         url: 'deletar',
@@ -81,7 +81,7 @@ $('#deletar').on('click', function () {
                 $('#mensagem').addClass('alert alert-error');
                 $('#mensagem').text(data);
             } else {
-                $('.noticia-'+id).remove();
+                $('.noticia-' + id).remove();
                 $('#mensagem').addClass('alert alert-success');
                 $('#mensagem').text(data);
             }
@@ -90,10 +90,28 @@ $('#deletar').on('click', function () {
 
 });
 
-$('#modalConfirmar').on('show.bs.modal', function (event){
+$('#modalConfirmar').on('show.bs.modal', function (event) {
     var botao = $(event.relatedTarget);
     var noticia = botao.data('whatever');
     var modal = $(this);
     modal.find('.modal-body').text('Deseja realmente deletar a Notícia ' + noticia['titulo'] + '?');
     $('#id').attr('value', noticia['id']);
+});
+
+$(document).ready(function () {
+    $(document).on('click', '.pagination a', function (event) {
+        event.preventDefault();
+        var page = $(this).attr('href').split('page=')[1];
+        fetch_data(page);
+        console.log(page);
+    });
+    
+    function fetch_data(page){
+        $.ajax({
+           url: 'paginacao?page='+page,
+           success: function(data){
+               $('#tabelaNoticia').html(data);
+           }
+        });
+    }
 });

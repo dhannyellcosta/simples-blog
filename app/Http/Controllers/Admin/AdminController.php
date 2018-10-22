@@ -29,7 +29,6 @@ class AdminController extends Controller {
 
         if ($validador->fails()) {
             return response()->json(['errors' => 'Campos invalidos! Preencha todos os campos!']);
-            //return response()->json(['errors' => $validador->getMessageBag()->toarray()]);
         } else {
             $this->noticia = new Noticia($request->all());
             $this->noticia->save();
@@ -40,8 +39,17 @@ class AdminController extends Controller {
 
     public function listarNoticias() {
 
-        $listarNoticias = Noticia::all();
+        $listarNoticias = Noticia::paginate(10);
         return view('admin.listar-noticias', ['listarNoticias' => $listarNoticias]);
+        
+    }
+
+    public function paginacao(Request $request) {
+
+        if ($request->ajax()) {
+            $listarNoticias = Noticia::paginate(10);
+            return view('admin.paginacao', ['listarNoticias' => $listarNoticias])->render();
+        }
     }
 
     public function deletar(Request $request) {
@@ -68,11 +76,11 @@ class AdminController extends Controller {
         ];
 
         $validador = Validator::make($request->all(), $rules);
-        
-        if($validador->fails()){
+
+        if ($validador->fails()) {
             return response()->json(['errors' => 'Campos invalidos! Preencha todos os campos!']);
         }
-        
+
         $this->noticia = Noticia::find($request->id);
         $this->noticia->update($request->all());
 

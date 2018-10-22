@@ -4,6 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/588095982/projetos/meublog/resources/views/layout/app.blade.php</file>
+            <file>file:/C:/Users/588095982/projetos/meublog/resources/views/admin/listar-noticias.blade.php</file>
             <file>file:/C:/Users/588095982/projetos/meublog/resources/views/admin/cadastrar-noticia.blade.php</file>
             <file>file:/C:/Users/588095982/projetos/meublog/app/Http/Controllers/Admin/AdminController.php</file>
             <file>file:/C:/Users/588095982/projetos/meublog/public/assets/js/noticia.js</file>
